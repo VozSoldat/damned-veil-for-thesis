@@ -1,67 +1,66 @@
 using System;
 using System.Collections.Generic;
 
-/// <summary>
-/// Manages all events.
-/// </summary>
-public static class EventManager
+namespace ProjectLightsOut.DevUtils
 {
-    private static readonly Dictionary<Type, Action<GameEvent>> eventCollections = new Dictionary<Type, Action<GameEvent>>();
-    private static readonly Dictionary<Delegate, Action<GameEvent>> eventLookups = new Dictionary<Delegate, Action<GameEvent>>();
-
-    #region Public methods
-    public static void AddListener<T>(Action<T> evt) where T : GameEvent
+    public static class EventManager
     {
-        if (!eventLookups.ContainsKey(evt))
-        {
-            Action<GameEvent> newAction = (e) => evt((T)e);
-            eventLookups[evt] = newAction;
+        private static readonly Dictionary<Type, Action<GameEvent>> eventCollections = new Dictionary<Type, Action<GameEvent>>();
+        private static readonly Dictionary<Delegate, Action<GameEvent>> eventLookups = new Dictionary<Delegate, Action<GameEvent>>();
 
-            if (eventCollections.TryGetValue(typeof(T), out Action<GameEvent> existingAction))
-            {
-                eventCollections[typeof(T)] = existingAction += newAction;
-            }
-            else
-            {
-                eventCollections[typeof(T)] = newAction;
-            }
-        }
-    }
-
-    public static void RemoveListener<T>(Action<T> evt) where T : GameEvent
-    {
-        if (eventLookups.TryGetValue(evt, out var action))
+        #region Public methods
+        public static void AddListener<T>(Action<T> evt) where T : GameEvent
         {
-            if (eventCollections.TryGetValue(typeof(T), out var existingAction))
+            if (!eventLookups.ContainsKey(evt))
             {
-                existingAction -= action;
-                if (existingAction == null)
+                Action<GameEvent> newAction = (e) => evt((T)e);
+                eventLookups[evt] = newAction;
+
+                if (eventCollections.TryGetValue(typeof(T), out Action<GameEvent> existingAction))
                 {
-                    eventCollections.Remove(typeof(T));
+                    eventCollections[typeof(T)] = existingAction += newAction;
                 }
                 else
                 {
-                    eventCollections[typeof(T)] = existingAction;
+                    eventCollections[typeof(T)] = newAction;
                 }
             }
-
-            eventLookups.Remove(evt);
         }
-    }
 
-    public static void Broadcast(GameEvent evt)
-    {
-        if (eventCollections.TryGetValue(evt.GetType(), out var action))
+        public static void RemoveListener<T>(Action<T> evt) where T : GameEvent
         {
-            action.Invoke(evt);
+            if (eventLookups.TryGetValue(evt, out var action))
+            {
+                if (eventCollections.TryGetValue(typeof(T), out var existingAction))
+                {
+                    existingAction -= action;
+                    if (existingAction == null)
+                    {
+                        eventCollections.Remove(typeof(T));
+                    }
+                    else
+                    {
+                        eventCollections[typeof(T)] = existingAction;
+                    }
+                }
+
+                eventLookups.Remove(evt);
+            }
         }
-    }
 
-    public static void Clear()
-    {
-        eventCollections.Clear();
-        eventLookups.Clear();
+        public static void Broadcast(GameEvent evt)
+        {
+            if (eventCollections.TryGetValue(evt.GetType(), out var action))
+            {
+                action.Invoke(evt);
+            }
+        }
+
+        public static void Clear()
+        {
+            eventCollections.Clear();
+            eventLookups.Clear();
+        }
+        #endregion
     }
-    #endregion
 }
-

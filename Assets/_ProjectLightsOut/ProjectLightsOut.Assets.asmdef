@@ -1,0 +1,16 @@
+{
+    "name": "Project",
+    "rootNamespace": "",
+    "references": [
+        "GUID:cad3649ea9608cc429e91f531a36c3c8"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
