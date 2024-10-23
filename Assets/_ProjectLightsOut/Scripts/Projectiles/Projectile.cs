@@ -1,3 +1,5 @@
+using ProjectLightsOut.DevUtils;
+using ProjectLightsOut.Managers;
 using UnityEngine;
 
 namespace ProjectLightsOut.Gameplay
@@ -39,6 +41,8 @@ namespace ProjectLightsOut.Gameplay
                 {
                     Destroy(gameObject);
                 }
+
+                EventManager.Broadcast(new CameraShakeEvent(0.05f, 0.05f));
             }
         }
     }
