@@ -9,11 +9,22 @@ namespace ProjectLightsOut.Gameplay
         private Rigidbody2D rb;
         private Vector2 direction;
         private int ricochetCount;
+        private float destroyTimer = 10f;
         [SerializeField] private int maxRicochetCount = 3;
 
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
+        }
+
+        private void Start()
+        {
+            EventManager.Broadcast(new OnProjectileShoot());
+        }
+
+        private void Update()
+        {
+            SelfDestruct();
         }
 
         private void FixedUpdate()
@@ -28,8 +39,15 @@ namespace ProjectLightsOut.Gameplay
 
         private void OnCollisionStay2D(Collision2D collision)
         {
+            CheckTargetCollision(collision);
+        }
+
+        private void CheckTargetCollision(Collision2D collision)
+        {
             if (collision.gameObject.CompareTag("Ricochet"))
             {
+                destroyTimer = 10f;
+                
                 if (ricochetCount < maxRicochetCount)
                 {
                     ricochetCount++;
@@ -39,11 +57,34 @@ namespace ProjectLightsOut.Gameplay
 
                 else
                 {
-                    Destroy(gameObject);
+                    DestroyProjectile();
                 }
 
                 EventManager.Broadcast(new CameraShakeEvent(0.05f, 0.05f));
             }
+
+            else if (collision.gameObject.CompareTag("Enemy"))
+            {
+                collision.gameObject.GetComponent<IHittable>().OnHit(ricochetCount);
+                EventManager.Broadcast(new CameraShakeEvent(0.05f, 0.05f));
+                EventManager.Broadcast(new OnSlowTime(0.1f, 0.2f));
+            }
+        }
+
+        private void SelfDestruct()
+        {
+            destroyTimer -= Time.deltaTime;
+
+            if (destroyTimer <= 0)
+            {
+                DestroyProjectile();
+            }
+        }
+
+        private void DestroyProjectile()
+        {
+            EventManager.Broadcast(new OnProjectileDestroy());
+            Destroy(gameObject);
         }
     }
 }

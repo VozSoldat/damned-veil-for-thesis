@@ -1,6 +1,5 @@
 using UnityEngine;
 using System;
-using UnityEditor.Experimental.GraphView;
 
 namespace ProjectLightsOut.Gameplay
 {
@@ -76,21 +75,21 @@ namespace ProjectLightsOut.Gameplay
             Vector3 leftRayOrigin = bulletSpawnPoint.position + bulletSpawnPoint.up * -radiusInWorldSpace;
             Vector3 rightRayOrigin = bulletSpawnPoint.position + bulletSpawnPoint.up * radiusInWorldSpace;
 
-            LayerMask layerMask = 1 << LayerMask.NameToLayer("Projectile");
+            LayerMask layerMask = 1 << LayerMask.NameToLayer("Ignore Laser") | 1 << LayerMask.NameToLayer("Projectile");
             layerMask = ~layerMask;
-            RaycastHit2D hit = Physics2D.Raycast(leftRayOrigin, bulletSpawnPoint.up, Mathf.Infinity, layerMask);
-            RaycastHit2D hit2 = Physics2D.Raycast(rightRayOrigin, bulletSpawnPoint.up, Mathf.Infinity, layerMask);
+            RaycastHit2D hitLeft = Physics2D.Raycast(leftRayOrigin, bulletSpawnPoint.up, Mathf.Infinity, layerMask);
+            RaycastHit2D hitRight = Physics2D.Raycast(rightRayOrigin, bulletSpawnPoint.up, Mathf.Infinity, layerMask);
 
-            if (hit.distance < hit2.distance)
+            if (hitLeft.distance < hitRight.distance)
             {
                 lineRenderer.SetPosition(0, bulletSpawnPoint.position);
-                lineRenderer.SetPosition(1, hit.point);
+                lineRenderer.SetPosition(1, hitLeft.point);
             }
 
             else
             {
                 lineRenderer.SetPosition(0, bulletSpawnPoint.position);
-                lineRenderer.SetPosition(1, hit2.point);
+                lineRenderer.SetPosition(1, hitRight.point);
             }
         }
 

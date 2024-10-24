@@ -5,14 +5,15 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ricochet
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Projectile
+  - Ignore Laser
   - Water
   - UI
-  - 
+  - Projectile
   - 
   - 
   - 
