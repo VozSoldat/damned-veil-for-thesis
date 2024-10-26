@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using ProjectLightsOut.DevUtils;
 using ProjectLightsOut.Hittable;
@@ -78,6 +79,7 @@ namespace ProjectLightsOut.Managers
                 }
                 else
                 {
+                    EventManager.Broadcast(new OnSlowTime(0.1f, 1.2f));
                     isLevelComplete = true;
                 }
             }

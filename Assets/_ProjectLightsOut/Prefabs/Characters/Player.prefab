@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 566875025673662859}
+  - component: {fileID: 2054916064066749024}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -34,6 +35,27 @@ Transform:
   - {fileID: 3038933223901937764}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &2054916064066749024
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468691464519517803}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3a33996faab6d6042a9deaa006319fa5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1281930235330179169
 GameObject:
   m_ObjectHideFlags: 0
@@ -79,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce822b1c0de56e34aa4e188d6e598c57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullets: 6
+  bullets: 100
   ricochets: 4
   bulletPrefab: {fileID: 50413372797159726, guid: 66d509b76433a4e4ca43ab63f9ccec8d, type: 3}
   bulletSpawnPoint: {fileID: 1658131981080366066}
@@ -125,7 +147,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6050641616530814121}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -158,10 +180,10 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Positions:
-  - {x: 0, y: 0, z: -2}
-  - {x: 0, y: -4.13, z: -2}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1

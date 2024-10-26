@@ -41,7 +41,7 @@ namespace ProjectLightsOut.Managers
             }
 
             Time.timeScale = timeScale;
-            Instance.StartCoroutine(Instance.ResetTimeScale(duration));
+            Instance.resetTimeScaleCoroutine = Instance.StartCoroutine(Instance.ResetTimeScale(duration));
         }
 
         private IEnumerator ResetTimeScale(float duration)

@@ -11,6 +11,8 @@ namespace ProjectLightsOut.Gameplay
         private int ricochetCount;
         private float destroyTimer = 10f;
         [SerializeField] private int maxRicochetCount = 3;
+        [SerializeField] private GameObject impactEffect;
+        [SerializeField] private GameObject hitEffect;
 
         private void Awake()
         {
@@ -42,6 +44,25 @@ namespace ProjectLightsOut.Gameplay
             CheckTargetCollision(collision);
         }
 
+        private void OnTriggerEnter2D(Collider2D collider)
+        {
+            CheckTargetTrigger(collider);
+        }
+
+        private void CheckTargetTrigger(Collider2D collider)
+        {
+            IHittable hittable = collider.gameObject.GetComponent<IHittable>();
+
+            if (hittable != null && hittable.IsHittable)
+            {
+                EventManager.Broadcast(new OnCameraShake(0.1f, 0.05f));
+                EventManager.Broadcast(new OnSlowTime(0.1f, 0.2f));
+                hittable.OnHit(1);
+
+                SpawnHitEffect(collider.transform.position, collider.transform.up);
+            }
+        }
+
         private void CheckTargetCollision(Collision2D collision)
         {
             if (collision.gameObject.CompareTag("Ricochet"))
@@ -60,15 +81,10 @@ namespace ProjectLightsOut.Gameplay
                     DestroyProjectile();
                 }
 
-                EventManager.Broadcast(new CameraShakeEvent(0.05f, 0.05f));
+                EventManager.Broadcast(new OnCameraShake(0.1f, 0.05f));
             }
 
-            else if (collision.gameObject.CompareTag("Enemy"))
-            {
-                collision.gameObject.GetComponent<IHittable>().OnHit(ricochetCount);
-                EventManager.Broadcast(new CameraShakeEvent(0.05f, 0.05f));
-                EventManager.Broadcast(new OnSlowTime(0.1f, 0.2f));
-            }
+            SpawnEffect(collision.GetContact(0).point + collision.GetContact(0).normal * 0.05f, collision.GetContact(0).normal);
         }
 
         private void SelfDestruct()
@@ -85,6 +101,22 @@ namespace ProjectLightsOut.Gameplay
         {
             EventManager.Broadcast(new OnProjectileDestroy());
             Destroy(gameObject);
+        }
+
+        private void SpawnEffect(Vector2 position, Vector2 normal)
+        {
+            if (impactEffect == null) return;
+
+            Transform impactFx = Instantiate(impactEffect, position, Quaternion.identity).transform;
+            impactFx.right = normal;
+        }
+
+        private void SpawnHitEffect(Vector2 position, Vector2 normal)
+        {
+            if (hitEffect == null) return;
+
+            Transform hitFx = Instantiate(hitEffect, position, Quaternion.identity).transform;
+            hitFx.right = normal;
         }
     }
 }

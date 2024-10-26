@@ -149,7 +149,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TX Plant_0
+      name: D_Plant_0
       rect:
         serializedVersion: 2
         x: 24
@@ -163,14 +163,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 956d4ee375a3f95459486eb2a843ab67
-      internalID: 1349567929
+      spriteID: a131f8d0355f4e94eba814c01e2ea631
+      internalID: 1019496182
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TX Plant_1
+      name: D_Plant_1
       rect:
         serializedVersion: 2
         x: 161
@@ -184,14 +184,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 353a145ae4915dc41a5c97165736fe13
-      internalID: -1606347071
+      spriteID: 5898ee23e48c46f42aa4b8e102741d19
+      internalID: 371007437
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TX Plant_2
+      name: D_Plant_2
       rect:
         serializedVersion: 2
         x: 295
@@ -205,14 +205,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dbe2f6c90de48b243b8552f1f1c0dbe6
-      internalID: -217025199
+      spriteID: 4d74dcf5026bdda49a82a66040a03169
+      internalID: 999176861
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TX Plant_3
+      name: D_Plant_3
       rect:
         serializedVersion: 2
         x: 38
@@ -226,14 +226,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 07d35f11cd334e143bb429f39c2e58c2
-      internalID: -1934878006
+      spriteID: d30b35effdeda3b418cae3c4df6a7a9d
+      internalID: 1650737598
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TX Plant_4
+      name: D_Plant_4
       rect:
         serializedVersion: 2
         x: 98
@@ -247,14 +247,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 233fd8ee773e9ef4db21706541ab1e93
-      internalID: -1819876224
+      spriteID: 8766866963d0fd3468942034800c9cfa
+      internalID: 1220521880
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TX Plant_5
+      name: D_Plant_5
       rect:
         serializedVersion: 2
         x: 156
@@ -268,14 +268,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e061f59d736bcdb4aa617aeadeb22c6d
-      internalID: 165297686
+      spriteID: 061c2025aa7df8b4f959c39859f6056a
+      internalID: 435297964
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TX Plant_6
+      name: D_Plant_6
       rect:
         serializedVersion: 2
         x: 216
@@ -289,14 +289,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 49d24d25cc6efa142a1ec4fe57cad3b6
-      internalID: -1538579977
+      spriteID: c171ab4c561ecf043b9bf425808dc04d
+      internalID: -1695383162
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TX Plant_7
+      name: D_Plant_7
       rect:
         serializedVersion: 2
         x: 282
@@ -310,14 +310,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f3906d3b67797fb488e68bc8709c2692
-      internalID: 1489835250
+      spriteID: e6b41fe5bfd543740a1660a82d1c9721
+      internalID: -1699859513
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TX Plant_8
+      name: D_Plant_8
       rect:
         serializedVersion: 2
         x: 346
@@ -331,14 +331,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0783c5543ff89084fb6d2294f2c6be1c
-      internalID: -904767657
+      spriteID: 8c29ee85709b29f4987644bda34145e4
+      internalID: -862252456
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TX Plant_9
+      name: D_Plant_9
       rect:
         serializedVersion: 2
         x: 8
@@ -352,14 +352,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 38cfe3a98bfefb2499cd965cf5e086a3
-      internalID: 331986909
+      spriteID: d8e354c52bbe37d459f319c99beaf424
+      internalID: -1003175045
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TX Plant_10
+      name: D_Plant_10
       rect:
         serializedVersion: 2
         x: 41
@@ -373,14 +373,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 62a4f818be57f2d43bd2d90c0e318c04
-      internalID: 1303731754
+      spriteID: 0b93c034edd9da64e97e8eb80175fce4
+      internalID: 371173688
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TX Plant_11
+      name: D_Plant_11
       rect:
         serializedVersion: 2
         x: 73
@@ -394,14 +394,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: defec9bd36d660e4096def4828738bae
-      internalID: -320731064
+      spriteID: 0b93c61305d0c0a45b9977bdda34a654
+      internalID: -1488314436
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TX Plant_12
+      name: D_Plant_12
       rect:
         serializedVersion: 2
         x: 102
@@ -415,14 +415,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 98f4037c2f54b3848aa361eec907e735
-      internalID: -1857686197
+      spriteID: 97dd68dcf56a08443abfaa000bffa750
+      internalID: 10422253
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TX Plant_13
+      name: D_Plant_13
       rect:
         serializedVersion: 2
         x: 9
@@ -436,14 +436,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 83d942d310152034e9ca0a761f9c0f56
-      internalID: -400682450
+      spriteID: 850d1072d3c16d543afabbeef90101df
+      internalID: 1224637349
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TX Plant_14
+      name: D_Plant_14
       rect:
         serializedVersion: 2
         x: 43
@@ -457,14 +457,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1786d57ce6e490b4a9fcb4b0037cd90e
-      internalID: -1784864519
+      spriteID: 05c55f3f30d933443b21ec7e2d62303b
+      internalID: 918584614
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TX Plant_15
+      name: D_Plant_15
       rect:
         serializedVersion: 2
         x: 74
@@ -478,14 +478,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba81b65d7ef83b94f9112f4cd7297e92
-      internalID: 573941430
+      spriteID: 0b65a4d1428dcb74a982ac4711bf19c9
+      internalID: 1127128279
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TX Plant_16
+      name: D_Plant_16
       rect:
         serializedVersion: 2
         x: 104
@@ -499,14 +499,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9cf54e060b35360449e0b969aa3d3e1e
-      internalID: 706596475
+      spriteID: fb379a2ee8034714ea3a872d47fce8ae
+      internalID: 1720444351
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TX Plant_17
+      name: D_Plant_17
       rect:
         serializedVersion: 2
         x: 9
@@ -520,14 +520,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bc367a9b0e3d8614ea44328d4fe2da34
-      internalID: -994550883
+      spriteID: 184af36a7a191c4409e647e1178295a9
+      internalID: -1732264965
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TX Plant_18
+      name: D_Plant_18
       rect:
         serializedVersion: 2
         x: 41
@@ -541,14 +541,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dfaa29d5db4694b43bdff1cd7942683f
-      internalID: 198769388
+      spriteID: 4f7698d5f09d42145ad039bc3169f3a8
+      internalID: 1925560529
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TX Plant_19
+      name: D_Plant_19
       rect:
         serializedVersion: 2
         x: 71
@@ -562,14 +562,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e9a971454cecdca428095cac8f20d0e9
-      internalID: -87357568
+      spriteID: 74d9eecd38ab0a14f91d1ee46fe44f5f
+      internalID: 1868784525
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TX Plant_20
+      name: D_Plant_20
       rect:
         serializedVersion: 2
         x: 106
@@ -583,14 +583,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3a5ffd3bfd0c6bf429bee9e048b19c48
-      internalID: 262525734
+      spriteID: 30933b6f071005f4ab21e9b94da95c98
+      internalID: -236714551
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TX Plant_21
+      name: D_Plant_21
       rect:
         serializedVersion: 2
         x: 11
@@ -604,14 +604,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e83fd63bf5133f34aaebf9f25237efbb
-      internalID: -1233375786
+      spriteID: 3ba6cc62749e5ac46a8f7f904839549b
+      internalID: 74436666
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TX Plant_22
+      name: D_Plant_22
       rect:
         serializedVersion: 2
         x: 44
@@ -625,14 +625,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 06bced38a7bd0234a9fca7297885fbbc
-      internalID: 569293871
+      spriteID: 8530348e7bac7f743a5117fa19e79274
+      internalID: 1030421937
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TX Plant_23
+      name: D_Plant_23
       rect:
         serializedVersion: 2
         x: 76
@@ -646,14 +646,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fdc246805d54ecb4ab8e8507b9ed5c58
-      internalID: -601593345
+      spriteID: 37373c42cab47f446aa1def1219fe998
+      internalID: -1229613225
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TX Plant_24
+      name: D_Plant_24
       rect:
         serializedVersion: 2
         x: 110
@@ -667,8 +667,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eb021944b14b0344aabe4acdc44b8de5
-      internalID: -299893285
+      spriteID: 8ee6cff4649b5c340a2dbe462f47ed20
+      internalID: -1031539092
       vertices: []
       indices: 
       edges: []
@@ -684,31 +684,31 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      TX Plant_0: 1349567929
-      TX Plant_1: -1606347071
-      TX Plant_10: 1303731754
-      TX Plant_11: -320731064
-      TX Plant_12: -1857686197
-      TX Plant_13: -400682450
-      TX Plant_14: -1784864519
-      TX Plant_15: 573941430
-      TX Plant_16: 706596475
-      TX Plant_17: -994550883
-      TX Plant_18: 198769388
-      TX Plant_19: -87357568
-      TX Plant_2: -217025199
-      TX Plant_20: 262525734
-      TX Plant_21: -1233375786
-      TX Plant_22: 569293871
-      TX Plant_23: -601593345
-      TX Plant_24: -299893285
-      TX Plant_3: -1934878006
-      TX Plant_4: -1819876224
-      TX Plant_5: 165297686
-      TX Plant_6: -1538579977
-      TX Plant_7: 1489835250
-      TX Plant_8: -904767657
-      TX Plant_9: 331986909
+      D_Plant_0: 1019496182
+      D_Plant_1: 371007437
+      D_Plant_10: 371173688
+      D_Plant_11: -1488314436
+      D_Plant_12: 10422253
+      D_Plant_13: 1224637349
+      D_Plant_14: 918584614
+      D_Plant_15: 1127128279
+      D_Plant_16: 1720444351
+      D_Plant_17: -1732264965
+      D_Plant_18: 1925560529
+      D_Plant_19: 1868784525
+      D_Plant_2: 999176861
+      D_Plant_20: -236714551
+      D_Plant_21: 74436666
+      D_Plant_22: 1030421937
+      D_Plant_23: -1229613225
+      D_Plant_24: -1031539092
+      D_Plant_3: 1650737598
+      D_Plant_4: 1220521880
+      D_Plant_5: 435297964
+      D_Plant_6: -1695383162
+      D_Plant_7: -1699859513
+      D_Plant_8: -862252456
+      D_Plant_9: -1003175045
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
