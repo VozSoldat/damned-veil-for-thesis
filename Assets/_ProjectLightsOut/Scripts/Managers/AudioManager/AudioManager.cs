@@ -15,15 +15,10 @@ namespace ProjectLightsOut.Managers
 
     public class AudioManager : Singleton<AudioManager>
     {
-        private struct AudioSourceCoroutine
-        {
-            public Coroutine coroutine;
-            public AudioSource audioSource;
-        }
-
         [SerializeField] private List<AudioData> audioData = new List<AudioData>();
-        private List<AudioSourceCoroutine> audioSourceCoroutines = new List<AudioSourceCoroutine>();
         private Action OnFadeOutComplete;
+        public static bool IsBGMPlaying { get; private set; }
+        private Coroutine BGMCoroutine;
 
         protected override void Awake()
         {
@@ -74,6 +69,8 @@ namespace ProjectLightsOut.Managers
 
         private void OnStopBGM(OnStopBGM evt)
         {
+            IsBGMPlaying = false;
+
             AudioData data = audioData.Find(x => x.name.ToLower() == evt.AudioName.ToLower());
 
             if (data == null)
@@ -84,8 +81,12 @@ namespace ProjectLightsOut.Managers
 
             if (evt.FadeOut > 0)
             {
-                Coroutine coroutine = StartCoroutine(FadeOut(data.audioSource, evt.FadeOut));
-                PlayCoroutine(data.audioSource, coroutine);
+                if (BGMCoroutine != null)
+                {
+                    StopCoroutine(BGMCoroutine);
+                }
+
+                BGMCoroutine = StartCoroutine(FadeOut(data.audioSource, evt.FadeOut));
             }
 
             else
@@ -96,6 +97,8 @@ namespace ProjectLightsOut.Managers
 
         private void OnPlayBGM(OnPlayBGM evt)
         {
+            IsBGMPlaying = true;
+            
             AudioData data = audioData.Find(x => x.name.ToLower() == evt.AudioName.ToLower());
 
             if (data == null)
@@ -106,8 +109,12 @@ namespace ProjectLightsOut.Managers
 
             if (data.audioSource.isPlaying)
             {
-                Coroutine coroutine = StartCoroutine(FadeOut(data.audioSource, 3f));
-                PlayCoroutine(data.audioSource, coroutine);
+                if (BGMCoroutine != null)
+                {
+                    StopCoroutine(BGMCoroutine);
+                }
+                
+                BGMCoroutine = StartCoroutine(FadeOut(data.audioSource, 3f));
 
                 OnFadeOutComplete = () => PlayBGM(data, evt.FadeIn);
             }
@@ -134,8 +141,11 @@ namespace ProjectLightsOut.Managers
                 
             if (fadeIn > 0)
             {
-                Coroutine coroutine = StartCoroutine(FadeIn(data.audioSource, fadeIn));
-                PlayCoroutine(data.audioSource, coroutine);
+                if (BGMCoroutine != null)
+                {
+                    StopCoroutine(BGMCoroutine);
+                }
+                BGMCoroutine = StartCoroutine(FadeIn(data.audioSource, fadeIn));
             }
 
             else
@@ -162,7 +172,7 @@ namespace ProjectLightsOut.Managers
 
         private IEnumerator FadeIn(AudioSource audioSource, float fadeTime)
         {
-            float startVolume = audioSource.volume;
+            float startVolume = 1;
             audioSource.volume = 0;
             audioSource.Play();
 
@@ -174,28 +184,6 @@ namespace ProjectLightsOut.Managers
             }
 
             audioSource.volume = startVolume;
-        }
-
-        private void PlayCoroutine(AudioSource audioSource, Coroutine coroutine)
-        {
-            AudioSourceCoroutine coroutineData = audioSourceCoroutines.Find(x => x.audioSource == audioSource);
-
-            if (coroutineData.coroutine != null)
-            {
-                StopCoroutine(coroutineData.coroutine);
-                coroutineData.coroutine = coroutine;
-            }
-
-            else
-            {
-                AudioSourceCoroutine data = new AudioSourceCoroutine
-                {
-                    audioSource = audioSource,
-                    coroutine = coroutine
-                };
-
-                audioSourceCoroutines.Add(data);
-            }
         }
     }
 }

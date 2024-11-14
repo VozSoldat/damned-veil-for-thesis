@@ -108,6 +108,20 @@ AudioMixerGroupController:
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
+--- !u!244 &-539115226204864766
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 500e4f5dcaee826489d26bdfa3fa8a2d
+  m_EffectName: Attenuation
+  m_MixLevel: c989dd9ed949e214ca44baac41e6b110
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!241 &24100000
 AudioMixerController:
   m_ObjectHideFlags: 0
@@ -135,6 +149,7 @@ AudioMixerController:
     - b3865c32be338aa40b50ba15d6498749
     - aa187507e3bec6a4f868e4656fc2b0a6
     - 12e6c47947a607f4babf31d6b8ccbe06
+    - e92eed67031603b4498e5b16ff0e853a
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -183,11 +198,12 @@ AudioMixerSnapshotController:
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: 1c9fb959cef241f48b259305058bb9bb
   m_FloatValues:
-    c5d25ff3b1ae87d45b1a2ea608041e09: 10.45642
+    c5d25ff3b1ae87d45b1a2ea608041e09: 6.9
     b6d941e4052de5d40b25215ed621bcca: -19.658215
     6bd8f625d7225a34abe7331b1c2e86d4: 10.889254
     ad1a20d5fa8b0ce4eac8449a4627cd0d: 20
     b1302828526383849b9f2c2fc9cfa001: 7.741807
+    2dbbfe69199a85e49805dc1749f5f5a3: 12.625203
     f302bf8bb2e224e4eb58b7158994417a: -1.3809603
     b44dd6ed9bb35064d8d5a9ecf0af425f: 6.792389
     eccd8c2f7f8a57547bd25ea31ee7ad0b: 17.4
@@ -209,11 +225,31 @@ AudioMixerGroupController:
   - {fileID: 2859229561485891692}
   - {fileID: -5713036992714664562}
   - {fileID: -2248819453557543580}
+  - {fileID: 1508558831150652105}
   m_Volume: b6d941e4052de5d40b25215ed621bcca
   m_Pitch: a4547bf3003bae1428e90eacb554536b
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: -6893485879135248826}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!243 &1508558831150652105
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Footstep
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: e92eed67031603b4498e5b16ff0e853a
+  m_Children: []
+  m_Volume: 2dbbfe69199a85e49805dc1749f5f5a3
+  m_Pitch: b0ccd33f3314a4a41bc37edda30ea412
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -539115226204864766}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0

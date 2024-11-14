@@ -43,7 +43,11 @@ namespace ProjectLightsOut.Managers
 
         private void Start()
         {
-            EventManager.Broadcast(new OnPlayBGM("MainMenu", fadeIn:10f));
+            if (LevelManager.Instance == null)
+            {
+                EventManager.Broadcast(new OnPlayBGM("MainMenu", fadeIn:10f));
+            }
+
             waitForLag = true;
         }
 
@@ -65,10 +69,12 @@ namespace ProjectLightsOut.Managers
                 case GameState.MainMenu:
                     EventManager.Broadcast(new OnResetScore());
                     EventManager.Broadcast(new OnPlayBGM("MainMenu"));
+                    Cursor.visible = true;
                     break;
                 case GameState.InGame:
                     StartCoroutine(ChangeScene(1f, "0-0"));
                     EventManager.Broadcast(new OnPlayBGM("Gameplay"));
+                    Cursor.visible = false;
                     break;
                 case GameState.GameOver:
                     EventManager.Broadcast(new OnPlayBGM("GameOver"));

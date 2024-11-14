@@ -11,5 +11,6 @@ namespace ProjectLightsOut.Managers
         public int Bullets = 6;
         public float AceTime = 60f;
         public List<string> NextLevelScenes;
+        public bool IsBossLevel;
     }
 }

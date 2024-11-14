@@ -15,6 +15,16 @@ namespace ProjectLightsOut.Managers
         }
     }
 
+    public class OnBossRegister : GameEvent
+    {
+        public Boss Boss;
+
+        public OnBossRegister(Boss boss)
+        {
+            Boss = boss;
+        }
+    }
+
     public class OnEnemyDead : GameEvent
     {
         public Enemy Enemy;
@@ -34,6 +44,15 @@ namespace ProjectLightsOut.Managers
             BulletLeft = bulletLeft;
         }
     }
+
+    public class OnTriggerGameOver : GameEvent
+    {}
+
+    public class OnTriggerLevelComplete : GameEvent
+    {}
+
+    public class OnBossDead : GameEvent
+    {}
 
     public class OnProjectileDestroy : GameEvent
     {}
@@ -62,6 +81,16 @@ namespace ProjectLightsOut.Managers
         }
     }
 
+    public class OnGrantReload : GameEvent
+    {
+        public int Bullets;
+
+        public OnGrantReload(int bullets)
+        {
+            Bullets = bullets;
+        }
+    }
+
     public class OnPlayerMove : GameEvent
     {
         public bool IsMoving;
@@ -85,4 +114,20 @@ namespace ProjectLightsOut.Managers
             IsEnabled = isEnabled;
         }
     }
+
+    public class OnBossLevel : GameEvent
+    {}
+
+    public class OnBossReady : GameEvent
+    {
+        public Boss Boss;
+
+        public OnBossReady(Boss boss)
+        {
+            Boss = boss;
+        }
+    }
+
+    public class OnReadyBoss : GameEvent
+    {}
 }

@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using ProjectLightsOut.DevUtils;
 using ProjectLightsOut.Managers;
+using System.Collections;
 
 namespace ProjectLightsOut.Gameplay
 {
@@ -46,6 +47,7 @@ namespace ProjectLightsOut.Gameplay
             private set { reloading = value; OnReloading?.Invoke(reloading); }
         }
         public Action OnShoot;
+        private Coroutine reloadCoroutine;
                 
         // ========================
 
@@ -57,11 +59,23 @@ namespace ProjectLightsOut.Gameplay
         private void OnEnable()
         {
             EventManager.AddListener<OnPlayerEnableShooting>(OnPlayerEnableShooting);
+            EventManager.AddListener<OnGrantReload>(OnGrantReload);
+            EventManager.AddListener<OnTriggerLevelComplete>(OnTriggerLevelComplete);
         }
 
         private void OnDisable()
         {
             EventManager.RemoveListener<OnPlayerEnableShooting>(OnPlayerEnableShooting);
+            EventManager.RemoveListener<OnGrantReload>(OnGrantReload);
+            EventManager.RemoveListener<OnTriggerLevelComplete>(OnTriggerLevelComplete);
+        }
+
+        private void OnTriggerLevelComplete(OnTriggerLevelComplete evt)
+        {
+            if (reloadCoroutine != null)
+            {
+                StopCoroutine(reloadCoroutine);
+            }
         }
 
         private void OnPlayerEnableShooting(OnPlayerEnableShooting evt)
@@ -89,6 +103,26 @@ namespace ProjectLightsOut.Gameplay
             Aim();
             DrawLaser();
             GetInput();
+        }
+
+        private void OnGrantReload(OnGrantReload evt)
+        {
+            reloadCoroutine = StartCoroutine(ReloadCoroutine());
+        }
+
+        private IEnumerator ReloadCoroutine(int bullets = 6)
+        {
+            IsFiringEnabled = false;
+            float duration = 2f;
+
+            for (int i = 0; i < bullets; i++)
+            {
+                yield return new WaitForSeconds(duration / bullets);
+                Bullets++;
+                EventManager.Broadcast(new OnBulletReload(1));
+            }
+
+            isFiringEnabled = true;
         }
 
         private void DrawLaser()
@@ -164,6 +198,14 @@ namespace ProjectLightsOut.Gameplay
 
             Bullets--;
             EventManager.Broadcast(new OnProjectileShoot(bullets));
+
+            if (bullets == 0)
+            {
+                if (LevelManager.LevelData.IsBossLevel)
+                {
+                    EventManager.Broadcast(new OnGrantReload(LevelManager.LevelData.Bullets));
+                }
+            }
         }
     }
 }

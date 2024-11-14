@@ -67,6 +67,9 @@ TagManager:
   - name: FX
     uniqueID: 1998389545
     locked: 0
+  - name: Cover
+    uniqueID: 886106365
+    locked: 0
   - name: UI
     uniqueID: 2710231171
     locked: 0

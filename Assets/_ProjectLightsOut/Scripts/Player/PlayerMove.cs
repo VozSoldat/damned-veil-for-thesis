@@ -11,6 +11,8 @@ public class PlayerMove : MonoBehaviour
     private bool isMoving = false;
     private List<Transform> waypoints = new List<Transform>();
     public Action<bool> OnPlayerMoving;
+    [SerializeField] private AudioSource footstepAudioSource;
+    [SerializeField] private List<AudioClip> footstepClips = new List<AudioClip>();
 
     private void Update()
     {
@@ -56,5 +58,12 @@ public class PlayerMove : MonoBehaviour
             OnPlayerMoving?.Invoke(isMoving);
             EventManager.Broadcast(new OnPlayerFinishMove());
         }
+    }
+
+
+    public void PlayFootstepSound()
+    {
+        footstepAudioSource.clip = footstepClips[UnityEngine.Random.Range(0, footstepClips.Count)];
+        footstepAudioSource.Play();
     }
 }

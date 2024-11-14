@@ -8,19 +8,22 @@ namespace ProjectLightsOut.Gameplay
 {
     public class Enemy : MonoBehaviour, IHittable
     {
-        public bool IsHittable { get; private set; } = true;
-        [SerializeField] private int health = 1;
+        public bool IsHittable { get; protected set; } = true;
+        public WaveDataSO WaveData { get; set; }
+        [SerializeField] protected int health = 1;
         [SerializeField] private bool immortal;
         public int Health { get => health; }
-        [SerializeField] private int score = 1000;
+        [SerializeField] protected int score = 1000;
         public Action<int> OnDamaged;
-        [SerializeField] private Animator animator;
-        [SerializeField] private GameObject SpawnEffect;
-        [SerializeField] private Collider2D col2d;
-        [SerializeField] private SpriteRenderer spriteRenderer;
-        [SerializeField] private SpriteRenderer shadowRenderer;
+        [SerializeField] protected Animator animator;
+        [SerializeField] protected GameObject SpawnEffect;
+        [SerializeField] protected Collider2D col2d;
+        [SerializeField] protected SpriteRenderer spriteRenderer;
+        [SerializeField] protected SpriteRenderer shadowRenderer;
+        [SerializeField] protected GameObject killEffect;
+        protected Action OnSpawned;
 
-        private void Awake()
+        protected virtual void Awake()
         {
             if (animator == null)
             {
@@ -38,12 +41,12 @@ namespace ProjectLightsOut.Gameplay
             }
         }
 
-        private void Start()
+        protected virtual void Start()
         {
             EventManager.Broadcast(new OnEnemyRegister(this));
         }
 
-        public void OnHit(int multiplier, Action OnTargetHit)
+        public virtual void OnHit(int multiplier, Action OnTargetHit)
         {
             if (!IsHittable) return;
 
@@ -59,6 +62,7 @@ namespace ProjectLightsOut.Gameplay
                 EventManager.Broadcast(new OnEnemyDead(this));
                 EventManager.Broadcast(new OnAddScore(score * multiplier));
                 EventManager.Broadcast(new OnPlaySFX("Kill"));
+                Instantiate(killEffect, transform.position, Quaternion.identity);
                 StartCoroutine(DeadDelay());
             }
         }
@@ -90,6 +94,8 @@ namespace ProjectLightsOut.Gameplay
             col2d.enabled = true;
             spriteRenderer.enabled = true;
             shadowRenderer.enabled = true;
+
+            OnSpawned?.Invoke();
         }
     }
 }

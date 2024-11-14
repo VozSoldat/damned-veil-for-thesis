@@ -90,6 +90,7 @@ MonoBehaviour:
   col2d: {fileID: 4557986534621900417}
   spriteRenderer: {fileID: 8786855991384722968}
   shadowRenderer: {fileID: 5603469209406197005}
+  killEffect: {fileID: 4828271000770673910, guid: 1b4a5e15abd3a3a4daea1c8da0b010a0, type: 3}
 --- !u!95 &6205325392130395573
 Animator:
   serializedVersion: 5
