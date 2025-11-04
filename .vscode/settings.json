@@ -58,3 +58,4 @@
     },
     "dotnet.defaultSolution": "project-lights-out.sln"
 }
+// defaultSolution is temporary
