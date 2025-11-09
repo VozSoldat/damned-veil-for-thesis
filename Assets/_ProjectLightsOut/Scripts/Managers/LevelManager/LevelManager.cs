@@ -107,11 +107,6 @@ namespace ProjectLightsOut.Managers
         {
             EventManager.Broadcast(new OnPlayerEnableShooting(false));
 
-            // if (GameManager.WaitForLag)
-            // {
-            //     yield return new WaitForSeconds(2f);
-            //     GameManager.WaitForLag = false;
-            // }
 
             yield return new WaitForSeconds(1f);
 
@@ -141,8 +136,7 @@ namespace ProjectLightsOut.Managers
         private void OnCompleteCountingScore(OnCompleteCountingScore evt)
         {
             string nextLevel = levelData.NextLevelScenes[Random.Range(0, levelData.NextLevelScenes.Count)];
-            EventManager.Broadcast(new OnFadeBlack());
-            EventManager.Broadcast(new OnChangeScene(nextLevel, 2f));
+            AppStateManager.Instance.GoToLevelSelect(nextLevel);
         }
 
         private IEnumerator FinishStartMove()
@@ -167,7 +161,6 @@ namespace ProjectLightsOut.Managers
         private void OnEnemyRegister(OnEnemyRegister evt)
         {
             enemies.Add(evt.Enemy);
-            //Debug.Log($"LevelManager: Enemy registered. Total enemies remaining: {enemies.Count}");
         }
 
         private void OnEnemyDead(OnEnemyDead evt)
@@ -175,7 +168,6 @@ namespace ProjectLightsOut.Managers
             enemies.Remove(evt.Enemy);
             deadEnemies.Add(evt.Enemy);
             
-            //Debug.Log($"LevelManager: Enemy dead. Total enemies remaining: {enemies.Count}");
             CheckAllEnemiesDead(evt.Enemy);
         }
 
@@ -183,13 +175,11 @@ namespace ProjectLightsOut.Managers
         {
             activeProjectiles++;
             bulletRemaining = evt.BulletLeft;
-            //Debug.Log($"LevelManager: Projectile shot. Total active projectiles: {activeProjectiles}");
         }
 
         private void OnProjectileDestroy(OnProjectileDestroy evt)
         {
             activeProjectiles--;
-            //Debug.Log($"LevelManager: Projectile destroyed. Total active projectiles: {activeProjectiles}");
 
             if (activeProjectiles == 0 && isLevelComplete)
             {

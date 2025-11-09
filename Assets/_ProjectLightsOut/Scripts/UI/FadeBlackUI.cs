@@ -49,11 +49,6 @@ public class FadeBlackUI : MonoBehaviour
 
     private void OnChangeScene(OnChangeScene e)
     {
-        if (e.SceneName == "Menu")
-        {
-            StartCoroutine(FadeBlack(1f));
-            OnFadeBlackComplete += () => {EventManager.Broadcast(new OnChangeGameState(GameState.MainMenu)); OnFadeBlackComplete = null;};
-        }
     }
 
     private IEnumerator FadeIn(float delay, float duration)

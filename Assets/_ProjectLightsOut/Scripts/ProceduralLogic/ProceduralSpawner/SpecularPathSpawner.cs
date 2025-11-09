@@ -9,10 +9,14 @@ using System.Collections.Generic;
 public class SpecularPathSpawner : MonoBehaviour
 {
     [Header("Scene References")]
-    public BspRoomGenerator bsp;           // optional, to fetch walls
     public Transform player;               // shot origin
     public GameObject enemyPrefab;         // enemy to spawn
     public Transform enemyParent;          // optional parent
+    
+
+    [System.Serializable]
+    public struct ManualWall { public Vector2 a; public Vector2 b; }
+    public List<ManualWall> manualWalls = new List<ManualWall>();
 
     [Header("Enemy Placement")]
     [Range(1, 64)] public int enemyCount = 5;
@@ -86,18 +90,11 @@ public class SpecularPathSpawner : MonoBehaviour
     void BuildWalls()
     {
         walls.Clear();
-
-        // Priority: take from BSP if present
-        if (bsp != null) {
-            var segs = bsp.BuildWallSegments();
-            foreach (var s in segs) walls.Add(new WallSeg(s.a, s.b));
+        // Use manually defined wall segments (Inspector)
+        if (manualWalls != null) {
+            foreach (var w in manualWalls) walls.Add(new WallSeg(w.a, w.b));
         }
-
-        // If there is no BSP, you can manually add walls here or
-        // detect colliders at runtime and convert to segments.
-        if (walls.Count == 0) {
-            Debug.LogWarning("[SpecularPathSpawner] No walls found. Assign a BSP or add walls manually.");
-        }
+        if (walls.Count == 0) Debug.LogWarning("[SpecularPathSpawner] No walls configured. Populate 'manualWalls' in the Inspector.");
     }
 
     void PickAngleAndPlace()
@@ -370,6 +367,4 @@ public class SpecularPathSpawner : MonoBehaviour
         }
         return 0.25f * Mathf.PI; // fallback 45°
     }
-
-    static float RandomSign(System.Random rng) => rng.NextDouble() < 0.5 ? -1f : 1f;
 }

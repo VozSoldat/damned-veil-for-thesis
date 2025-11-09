@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using ProjectLightsOut.DevUtils;
 using ProjectLightsOut.Managers;
 using UnityEngine;
@@ -15,7 +14,6 @@ public class MenuPlayButtonUI : MonoBehaviour
 
         isPressed = true;
         AppStateManager.Instance.StartGameplay();
-        // StartCoroutine(FadeOut());
         EventManager.Broadcast(new OnPlaySFX("Boom1"));
     }
 

@@ -7,8 +7,7 @@ namespace ProjectLightsOut.Managers
 {
     public enum GameState
     {
-        MainMenu,
-        InGame,
+        Playing,
         Paused,
         GameOver
     }
@@ -16,7 +15,7 @@ namespace ProjectLightsOut.Managers
     public class GameManager : Singleton<GameManager>
     {
         private Coroutine resetTimeScaleCoroutine;
-        private GameState gameState = GameState.MainMenu;
+        private GameState gameState = GameState.Playing;
         private Action OnSceneLoadComplete;
         private bool isPaused = false;
         public static bool IsPaused => Instance.isPaused;
@@ -32,14 +31,12 @@ namespace ProjectLightsOut.Managers
         {
             EventManager.AddListener<OnSlowTime>(OnSlowTimeEvent);
             EventManager.AddListener<OnChangeGameState>(OnChangeGameState);
-            EventManager.AddListener<OnChangeScene>(OnChangeScene);
         }
 
         private void OnDisable()
         {
             EventManager.RemoveListener<OnSlowTime>(OnSlowTimeEvent);
             EventManager.RemoveListener<OnChangeGameState>(OnChangeGameState);
-            EventManager.RemoveListener<OnChangeScene>(OnChangeScene);
         }
 
         private void Start()
@@ -52,7 +49,7 @@ namespace ProjectLightsOut.Managers
 
         private void Update()
         {
-            if (gameState != GameState.InGame) return;
+            if (gameState != GameState.Playing) return;
 
             if (Input.GetKeyDown(KeyCode.Escape))
             {
@@ -60,28 +57,20 @@ namespace ProjectLightsOut.Managers
             }
         }
 
-        // private void OnSceneLoaded()
-        // {
-        //     OnSceneLoadComplete?.Invoke();
-        //     OnSceneLoadComplete = null;
-        // }
-
         public void OnChangeGameState(OnChangeGameState evt)
         {
             switch (evt.GameState)
             {
-                case GameState.MainMenu:
+                case GameState.Playing:
                     EventManager.Broadcast(new OnResetScore());
-                    EventManager.Broadcast(new OnPlayBGM("MainMenu"));
-                    Cursor.visible = true;
-                    break;
-                case GameState.InGame:
-                    // StartCoroutine(ChangeScene(1f, "0-0"));
                     EventManager.Broadcast(new OnPlayBGM("Gameplay"));
                     Cursor.visible = false;
                     break;
                 case GameState.GameOver:
                     EventManager.Broadcast(new OnPlayBGM("GameOver"));
+                    Cursor.visible = true;
+                    break;
+                case GameState.Paused:
                     break;
             }
 
@@ -111,19 +100,6 @@ namespace ProjectLightsOut.Managers
             Time.timeScale = 1f;
         }
 
-        private void OnChangeScene(OnChangeScene evt)
-        {
-            // StartCoroutine(ChangeScene(evt.Delay, evt.SceneName));
-            AppStateManager.Instance.GoToLevelSelect(evt.SceneName);
-        }
-
-        // private IEnumerator ChangeScene(float delay, string sceneName)
-        // {
-        //     yield return new WaitForSeconds(delay);
-        //     UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(sceneName);
-        //     UnityEngine.SceneManagement.SceneManager.sceneLoaded += (scene, mode) => OnSceneLoaded();
-        // }
-
         #region Pause
         private void TogglePause()
         {
@@ -143,20 +119,32 @@ namespace ProjectLightsOut.Managers
 
         public void RestartGame()
         {
-            EventManager.Broadcast(new OnChangeGameState(GameState.InGame));
+            EventManager.Broadcast(new OnChangeGameState(GameState.Playing));
+            isPaused = false;
+            Time.timeScale = 1f;
         }
 
         public void ResumeGame()
         {
             isPaused = false;
             Time.timeScale = 1f;
+            gameState = GameState.Playing;
+            EventManager.Broadcast(new OnPause(false));
+            EventManager.Broadcast(new OnPlayerEnableShooting(true));
+            Cursor.visible = false;
         }
 
         public void QuitToMainMenu()
         {
-            EventManager.Broadcast(new OnChangeScene("Menu", 0f));
-            EventManager.Broadcast(new OnChangeGameState(GameState.MainMenu));
+            // Reset game state before transitioning to main menu
+            isPaused = false;
             Time.timeScale = 1f;
+            gameState = GameState.Playing;
+            EventManager.Broadcast(new OnPause(false));
+            EventManager.Broadcast(new OnPlayerEnableShooting(true));
+            
+            // Notify that we're leaving gameplay
+            EventManager.Broadcast(new OnChangeGameState(GameState.GameOver));
         }
             
         #endregion

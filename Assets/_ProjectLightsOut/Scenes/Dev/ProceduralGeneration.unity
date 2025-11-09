@@ -148,10 +148,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81c6d82e4fb4ae4fe8d11fc87d169111, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Project::SpecularPathSpawner
-  bsp: {fileID: 803176388}
   player: {fileID: 1315694691}
   enemyPrefab: {fileID: 1294267329}
   enemyParent: {fileID: 75476824}
+  manualWalls: []
   enemyCount: 13
   s0: 50
   ds: 2
@@ -269,64 +269,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc0e02cca7cacf9419454ce3118d6142, type: 3}
---- !u!1 &803176387
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 803176389}
-  - component: {fileID: 803176388}
-  m_Layer: 0
-  m_Name: BSP
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &803176388
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 803176387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49af3193f264d592abff4c3e63d5d7ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Project::BspRoomGenerator
-  mapSize: {x: 4, y: 12}
-  seed: 231
-  maxDepth: 6
-  minLeafSize: 24
-  corridorWidth: 2
-  roomPadding: 2
-  minRoomSize: {x: 12, y: 12}
-  maxRoomSize: {x: 64, y: 64}
-  maxObstaclesPerRoom: 3
-  minObsSize: {x: 2, y: 2}
-  maxObsSize: {x: 20, y: 20}
-  obsClearance: 1
-  generateOnStart: 1
-  drawGizmos: 1
---- !u!4 &803176389
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 803176387}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.75336, y: -1.72325, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &906109690
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -535,7 +477,6 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 803176389}
   - {fileID: 45298434}
   - {fileID: 1431447896}
   - {fileID: 400433223}
