@@ -87,12 +87,12 @@ namespace ProjectLightsOut.DevUtils
             State = AppState.Gameplay;
         }
 
-        public async void RestartGameplay()
+        public async void RestartGameplay(string level)
         {
             if (State == AppState.Gameplay)
             {
                 State = AppState.Loading;
-                await SceneLoader.SwitchToAsync("0-0");
+                await SceneLoader.SwitchToAsync(level);
                 EventManager.Broadcast(new OnChangeGameState(GameState.Playing));
                 State = AppState.Gameplay;
             }

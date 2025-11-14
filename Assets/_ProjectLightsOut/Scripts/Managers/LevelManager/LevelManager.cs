@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using ProjectLightsOut.DevUtils;
 using ProjectLightsOut.Gameplay;
-using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
 namespace ProjectLightsOut.Managers
@@ -15,6 +14,7 @@ namespace ProjectLightsOut.Managers
         [SerializeField] private List<Transform> endWaypoints = new List<Transform>();
         [SerializeField] private bool instantlyZoomAtStart = false;
         [SerializeField] private float zoomLevel = 0.3f;
+        public string LevelName { get => UnityEngine.SceneManagement.SceneManager.GetActiveScene().name; }
         private List<Enemy> enemies = new List<Enemy>();
         public List<Enemy> Enemies { get => enemies; }
         private List<Enemy> deadEnemies = new List<Enemy>();
@@ -44,7 +44,6 @@ namespace ProjectLightsOut.Managers
             EventManager.AddListener<OnPlayerFinishMove>(OnPlayerFinishMove);
             EventManager.AddListener<OnCompleteCountingScore>(OnCompleteCountingScore);
             EventManager.AddListener<OnPlayerEnableShooting>(OnPlayerEnableShooting);
-            EventManager.AddListener<OnTriggerGameOver>(TriggerGameOver);
             EventManager.AddListener<OnTriggerLevelComplete>(OnTriggerLevelComplete);
             EventManager.AddListener<OnBossRegister>(OnBossRegister);
         }
@@ -58,7 +57,6 @@ namespace ProjectLightsOut.Managers
             EventManager.RemoveListener<OnPlayerFinishMove>(OnPlayerFinishMove);
             EventManager.RemoveListener<OnCompleteCountingScore>(OnCompleteCountingScore);
             EventManager.RemoveListener<OnPlayerEnableShooting>(OnPlayerEnableShooting);
-            EventManager.RemoveListener<OnTriggerGameOver>(TriggerGameOver);
             EventManager.RemoveListener<OnTriggerLevelComplete>(OnTriggerLevelComplete);
             EventManager.RemoveListener<OnBossRegister>(OnBossRegister);
         }
@@ -198,11 +196,6 @@ namespace ProjectLightsOut.Managers
                     StartCoroutine(GameOver());
                 }
             }
-        }
-
-        private void TriggerGameOver(OnTriggerGameOver evt)
-        {
-            StartCoroutine(GameOver());
         }
 
         private void OnTriggerLevelComplete(OnTriggerLevelComplete evt)

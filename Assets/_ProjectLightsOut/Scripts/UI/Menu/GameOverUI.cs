@@ -1,10 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using ProjectLightsOut.DevUtils;
 using ProjectLightsOut.Managers;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class GameOverUI : MonoBehaviour
 {
@@ -56,7 +54,7 @@ public class GameOverUI : MonoBehaviour
         canvasGroup.blocksRaycasts = true;
     }
 
-    public void OnRetryButtonClicked()
+    public async void OnRetryButtonClicked()
     {
         if (isPressed) return;
 
@@ -65,23 +63,19 @@ public class GameOverUI : MonoBehaviour
         EventManager.Broadcast(new OnFadeBlack());
         EventManager.Broadcast(new OnPlayBGM("Gameplay"));
 
-        string currentSceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
-
-        if (currentSceneName == "0-0")
-        {
-            currentSceneName = "0-1";
-        }
-        EventManager.Broadcast(new OnChangeScene(currentSceneName, 3f));
-        EventManager.Broadcast(new OnRollbackScore());
+        AppStateManager.Instance.RestartGameplay(LevelManager.Instance.LevelName);
     }
 
-    public void OnTitleScreenButtonClicked()
+    public async void OnTitleScreenButtonClicked()
     {
         if (isPressed) return;
 
         isPressed = true;
         EventManager.Broadcast(new OnPlaySFX("Boom1"));
         EventManager.Broadcast(new OnChangeScene("Menu", 3f));
+        Cursor.visible = false;
+
+        AppStateManager.Instance.GoToMainMenu();
     }
 
     private IEnumerator GameOverAnimation()
