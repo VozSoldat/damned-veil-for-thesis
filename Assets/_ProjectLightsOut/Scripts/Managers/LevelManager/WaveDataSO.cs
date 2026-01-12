@@ -10,7 +10,8 @@ namespace ProjectLightsOut.Managers
         public List<EnemyData> Enemies;
     }
 
-    [Serializable] public struct EnemyData
+    [Serializable]
+    public struct EnemyData
     {
         public string EnemyIdentifier;
         public GameObject EnemyPrefab;
